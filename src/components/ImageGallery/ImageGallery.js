@@ -52,6 +52,12 @@ class ImageGallery extends Component {
     }
     if (prevSearch !== nextSearch) {
       this.setState({ page: 1, images: [] });
+
+      // terminate func, because state was changed,
+      // component will update, and this func will run second time
+      if (nextPage !== 1) {
+        return;
+      }
     }
 
     this.loadImages(nextSearch, nextPage);
